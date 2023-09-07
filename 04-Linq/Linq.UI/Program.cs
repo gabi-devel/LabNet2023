@@ -10,7 +10,7 @@ namespace Linq.UI
     {
         static void Main(string[] args)
         {
-            int cantQueries = 11;
+            int cantQueries = 10;
             bool salir = false;
 
             do {
