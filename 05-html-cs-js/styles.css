@@ -1,0 +1,24 @@
+#box {
+    margin: 3rem 10rem;
+}
+
+span {
+    font-size: 1rem;
+    background-color: rgb(69, 187, 255);
+    padding: 0.3rem 0.5rem;
+    margin-left: 10px;
+    border-radius: 20%;
+}
+
+#signo {
+    margin: -2rem;
+}
+#signo::after {
+    background-color: #b8b8b8;
+    padding: 1rem 1.3rem;
+    border-radius: 50%;
+    font-size: 1rem;
+    content: "?";
+    color: #000000;
+    margin: 50%;
+}
