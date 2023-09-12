@@ -10,7 +10,7 @@ namespace Lab.MVC.Controllers
 {
     public class CustomersController : Controller
     {
-        CustomersLogic logic = new CustomersLogic();
+        readonly CustomersLogic logic = new CustomersLogic();
 
         // GET: Customers
         public ActionResult Index()

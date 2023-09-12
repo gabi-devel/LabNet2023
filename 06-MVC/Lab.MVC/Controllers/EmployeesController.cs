@@ -11,7 +11,7 @@ namespace Lab.MVC.Controllers
 {
     public class EmployeesController : Controller
     {
-        EmployeesLogic logic = new EmployeesLogic();
+        readonly EmployeesLogic logic = new EmployeesLogic();
 
         // GET: Employees
         public ActionResult Index()
@@ -19,7 +19,7 @@ namespace Lab.MVC.Controllers
             List<EmployeesDto> employeesAll = logic.GetAll();
 
             List<EmployeesView> emp = employeesAll.Select(e => new EmployeesView
-            { /*Toma los datos de Models/EmployeesView para poder leerlos en la Vista*/
+            { // Toma los datos de Models/EmployeesView para poder leerlos en la Vista
                 Id = e.EmployeeID,
                 FirstName = e.FirstName,
                 LastName = e.LastName
@@ -32,8 +32,7 @@ namespace Lab.MVC.Controllers
         }
 
         [HttpPost]
-        /* El nombre de la vista debe coincidir con el nombre del método en el
-        controlador que la llama para no dar error.*/
+        // El nombre de la vista debe coincidir con el nombre del método en el controlador que la llama para no dar error.
         public ActionResult AddEmployee(EmployeesView employeeView)
         {
             try
@@ -58,7 +57,7 @@ namespace Lab.MVC.Controllers
 
         
         public ActionResult EditEmployee(int employeeId)
-        {// Lee datos desde EmployeesDto y los mapea al modelo EmployeesView
+        { // Lee datos desde EmployeesDto y los mapea al modelo EmployeesView
             EmployeesDto getIdByLogic = logic.GetId(employeeId);
 
             EmployeesView dataModel = new EmployeesView

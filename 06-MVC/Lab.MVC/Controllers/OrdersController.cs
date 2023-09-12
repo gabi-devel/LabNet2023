@@ -11,7 +11,7 @@ namespace Lab.MVC.Controllers
         public ActionResult Index()
         {
             OrdersLogic logic = new OrdersLogic();
-            List<OrdersDto> ordenes = logic.GetAll();
+            List<OrdersDto> ordenes = (List<OrdersDto>)logic.GetAll();
             return View(ordenes);
         }
 

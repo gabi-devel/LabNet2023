@@ -41,10 +41,5 @@ namespace EF.Logic
             context.Customers.Remove(findId);
             context.SaveChanges();
         }
-
-        public void Update(Customers elementUpdate)
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }
