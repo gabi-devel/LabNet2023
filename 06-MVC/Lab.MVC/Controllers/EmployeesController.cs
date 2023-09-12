@@ -31,7 +31,6 @@ namespace Lab.MVC.Controllers
             return View("Add");
         }
 
-        [HttpPost]
         // El nombre de la vista debe coincidir con el nombre del método en el controlador que la llama para no dar error.
         public ActionResult AddEmployee(EmployeesView employeeView)
         {
@@ -70,7 +69,6 @@ namespace Lab.MVC.Controllers
             return View("edit", dataModel);
         }
 
-        [HttpPost]
         public ActionResult UpdateEmployee(EmployeesView eModel)
         { // Desde el modelo hacia el DTO
             EmployeesDto existEmployeeDTO = logic.GetId(eModel.Id);
