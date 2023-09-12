@@ -1,0 +1,46 @@
+﻿
+@model List<Lab.MVC.Models.CustomerView>
+@{
+    ViewBag.Title = "CustomerView";
+}
+
+<h1>Clientes</h1>
+
+<button type="button" class="btn btn-light">
+    @Html.ActionLink("Agregar Empresa", "AddCustomer")
+</button>
+
+@Html.ActionLink("Ver listado de Empresas", "Index")
+@Html.ActionLink("Agregar Empresa", "AddCustomer")
+@*@Html.ActionLink("Ir a la página de Detalles", "Details", "Product", new { id = 123 })*@
+
+
+<h2>Todos los Clientes</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre Empresa</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @*Toma el los datos de modelo de CustomerView*@
+        @foreach (var c in Model)
+        {
+        <tr>
+            <th scope="row">@c.Id</th>
+            <td>@c.CompanyName</td>
+            <td>
+                @* @Html.ActionLink("Borrar", "DeleteCustomer", new { id = c.Id })*@
+                @using (Html.BeginForm("DeleteCustomer"))
+                {
+                    @Html.Hidden("customerId", c.Id)
+                    <button class="btn btn-danger">Borrar</button>
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

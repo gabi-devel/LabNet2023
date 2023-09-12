@@ -1,0 +1,23 @@
+﻿@model Lab.MVC.Models.CustomerView
+@{
+    ViewBag.Title = "Agregar Cliente";
+}
+
+<h2>Agregar Cliente</h2>
+<br />
+
+@using (Html.BeginForm("Add", "CustomersDto", FormMethod.Post))
+{
+    <div class="mb-3">
+        <label class="form-label">Nombre de Empresa</label>
+        @Html.TextBoxFor(c => c.CompanyName, new { @class = "form-control" })
+        <div class="form-text">Sólo ingresar nombre de persona jurídica</div>
+    </div>
+    @*<br />
+    <div class="mb-3">
+        <label for="" class="form-label">Otro campo (opcional)</label>
+        <input type="text" class="form-control" id="">
+    </div>*@
+    <br />
+    <button type="submit" value="save" class="btn btn-primary">Guardar</button>
+}

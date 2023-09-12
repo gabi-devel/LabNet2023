@@ -1,0 +1,33 @@
+﻿@model Lab.MVC.Models.EmployeesView
+@{
+    ViewBag.Title = "Agregar Empleado";
+}
+
+@Html.ActionLink("Regresar a Editar", "Edit")
+
+<h2>Agregar Empleado</h2>
+<br />
+
+@using (Html.BeginForm("UpdateEmployee", "Employees", FormMethod.Post))
+{
+    <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        @Html.TextBoxFor(e => e.FirstName, new { @class = "form-control" })
+    </div>
+    <br />
+    <div class="mb-3">
+        <label class="form-label">Apellido</label>
+        @Html.TextBoxFor(e => e.LastName, new { @class = "form-control" })
+    </div>
+    <br />
+    <button type="submit" value="save" class="btn btn-primary">Guardar</button>
+}
+
+<script>
+    @*@if (TempData[SweetAlertUpdated] != null)
+    {
+        Swal.fire({
+        text: "@TempData[SweetAlertUpdated]"
+        })
+    }*@
+</script>

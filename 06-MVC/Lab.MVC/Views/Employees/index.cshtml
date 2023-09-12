@@ -1,0 +1,82 @@
+﻿@model List<Lab.MVC.Models.EmployeesView>
+@{
+    ViewBag.Title = "Empleados";
+}
+
+
+
+@Html.ActionLink("Ver listado de Empleados", "Index")
+@Html.ActionLink("Agregar Empleado", "AddEmployee", "Employees")
+
+<h1>Empleados</h1>
+
+<h2>Todos los Empleados</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody> <script>let eId;</script>
+        @foreach (var e in Model)
+        {
+            <tr>
+                <th scope="row">@e.Id</th>
+                <td>@e.FirstName</td>
+                <td>@e.LastName</td>
+                <td>
+                    @Html.ActionLink("Editar", "EditEmployee", new { employeeId = e.Id })
+
+                    @Html.ActionLink("Borrar", "DeleteEmployee", new { employeeId = e.Id },
+                        new {
+                        onclick = "return confirm('Está seguro que desea Eliminar?')" })
+
+                    @*@using (Html.BeginForm("DeleteEmployee", "Employees",
+                                            FormMethod.Post, new { employeeId = e.Id }
+                                            //,new { id = "formId" }
+                                            ))
+                    {
+                        @Html.Hidden("employeeId", e.Id)
+                    <script>
+
+                            console.log(@e.Id)
+                            eId = @e.Id;
+                    </script>
+                        <button type="button" class="btn btn-danger" id="deleteButton" onclick="buttonDelete()">Borrar</button>
+                    }*@
+                </td>
+            </tr>
+        }
+        <script>
+                    @*const empId = document.getElementById("deleteButton").value;
+                    console.log("Valor de employeeId: " + @e.Id);
+                    console.log("Valor " + empId);*@
+            //    let empId;
+            //function buttonDelete(employeeId) {
+            //    empId = employeeId;
+            //    console.log(eId);
+            //                Swal.fire({
+            //                    title: 'Está seguro?',
+            //                    text: "El registro se eliminará definitivamente!",
+            //                    icon: 'warning',
+            //                    showCancelButton: true,
+            //                    confirmButtonColor: '#3085d6',
+            //                    cancelButtonColor: '#d33',
+            //                    confirmButtonText: 'Si, Borralo',
+            //                    cancelButtonText: 'Cancelar'
+            //                }).then((result) => {
+            //                    if (result.isConfirmed) {
+            //                        document.getElementById("formId").submit();
+                                    //document.getElementById("employeeId").value = employeeId;
+                                    //window.location.href = '/Employees/DeleteEmployee?id=' + empId;
+                                }
+                            })
+                        }
+        </script>
+    </tbody>
+</table>
+
