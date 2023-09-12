@@ -29,7 +29,6 @@ namespace Lab.MVC.Controllers
             return View("Add");
         }
 
-        [HttpPost]
         public ActionResult AddCustomer(CustomerView customerView)
         {
             try
