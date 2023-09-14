@@ -1,6 +1,5 @@
 ﻿using EF.Entities;
 using EF.Logic.DTOs;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -12,11 +11,11 @@ namespace EF.Logic
     {
         private DbSet<Categories> TableCategories => context.Categories;
 
-        public IEnumerable<CategoriesDto> GetAll()
+        public List<CategoriesDto> GetAll()
         {
-            IEnumerable<Categories> categ = context.Categories.AsEnumerable();
+            List<Categories> categ = context.Categories.ToList();
 
-            IEnumerable<CategoriesDto> cDTO = categ.Select(c => new CategoriesDto
+            List<CategoriesDto> cDTO = categ.Select(c => new CategoriesDto
             {
                 CategoryID = c.CategoryID,
                 CategoryName = c.CategoryName,

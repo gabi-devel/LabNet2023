@@ -2,7 +2,7 @@
 
 namespace Lab.MVC.Controllers
 {
-    public class CategoriesController : Controller
+    public class CategoriesMVCController : Controller
     {
         // GET: Categories
         public ActionResult Index()
