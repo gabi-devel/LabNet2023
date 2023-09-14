@@ -5,14 +5,11 @@
     ViewBag.Title = "Ordenes";
 }
 
-
-
 <h2>Todas las órdenes</h2>
 
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">ID</th>
             <th scope="col">Cliente</th>
             <th scope="col">Fecha de Pedido</th>
             <th scope="col">Dirección</th>
@@ -26,7 +23,6 @@
         @foreach (var ord in Model)
         {
             <tr>
-                <th scope="row">@ord.OrderID</th>
                 <td>@ord.CustomerID</td>
                 <td>@ord.OrderDate</td>
                 <td>@ord.ShipAddress</td>

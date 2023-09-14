@@ -38,9 +38,6 @@ namespace Lab.MVC.Controllers
                 return RedirectToAction("Index");
             } catch (Exception ex)
             {
-                //throw;
-                //ModelState.AddModelError(string.Empty, "Error al agregar el cliente: " + ex.Message);
-                //return View("Add", customerView);
                 return RedirectToAction("Index", "Error");
             }
             

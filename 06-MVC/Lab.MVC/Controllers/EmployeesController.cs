@@ -4,7 +4,6 @@ using Lab.MVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Lab.MVC.Controllers
@@ -26,7 +25,7 @@ namespace Lab.MVC.Controllers
             }).ToList();
             return View(emp);
         }
-        public ActionResult AddEmployee()
+        public ActionResult Add()
         {
             return View("Add");
         }
@@ -49,12 +48,11 @@ namespace Lab.MVC.Controllers
             }
         }
         public ActionResult DeleteEmployee(int employeeId)
-        { // poner try y catch
+        { 
             logic.Delete(employeeId);
             return RedirectToAction("Index");
         }
 
-        
         public ActionResult EditEmployee(int employeeId)
         { // Lee datos desde EmployeesDto y los mapea al modelo EmployeesView
             EmployeesDto getIdByLogic = logic.GetId(employeeId);
@@ -75,7 +73,6 @@ namespace Lab.MVC.Controllers
 
             if (existEmployeeDTO.FirstName != eModel.FirstName) { existEmployeeDTO.FirstName = eModel.FirstName; }
             if (existEmployeeDTO.LastName != eModel.LastName) { existEmployeeDTO.LastName = eModel.LastName; }
-
 
             logic.Update(existEmployeeDTO);
 
