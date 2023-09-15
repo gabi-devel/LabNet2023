@@ -1,7 +1,26 @@
-﻿
+﻿@model List<Lab.Api.Models.CategoriesModel>
+
 @{
     ViewBag.Title = "Categorias";
 }
 
 <h2>Categorias</h2>
-
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.CategoryID</td>
+                <td>@c.CategoryName</td>
+                <td>@c.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>

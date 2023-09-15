@@ -37,9 +37,14 @@ namespace EF.Logic
                 .ToListAsync();
         }
 
-        public void Add(Categories newCat)
+        public void Add(CategoriesDto newCat)
         {
-            context.Categories.Add(newCat);
+            context.Categories.Add(new Categories
+            {
+                //CategoryID = newCat.CategoryID,
+                CategoryName = newCat.CategoryName,
+                Description = newCat.Description
+            });
 
             context.SaveChanges();
         }

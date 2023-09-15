@@ -4,7 +4,7 @@ namespace Lab.MVC.Models
 {
     public class CategoriesModel
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
         
         public string CategoryName { get; set; }
 

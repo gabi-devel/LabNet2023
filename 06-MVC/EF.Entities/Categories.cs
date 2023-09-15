@@ -6,6 +6,7 @@ namespace EF.Entities
     public partial class Categories
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CategoryID { get; set; }
 
         [Required]
