@@ -1,0 +1,21 @@
+﻿@model IEnumerable<Lab.MVC.Models.CategoriesApiModel>
+@{
+    ViewBag.Title = "index";
+}
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+    </tr>
+    @foreach (var c in Model)
+    {
+        <tr>
+            <td>@c.CategoryID</td>
+            <td>@c.CategoryName</td>
+            <td>@c.Description</td>
+        </tr>
+    }
+</table>
+
+

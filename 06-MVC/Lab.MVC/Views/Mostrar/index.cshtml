@@ -1,0 +1,35 @@
+﻿@*@model Lab.MVC.Models.MostrarModel*@
+@model List<Lab.MVC.Models.MostrarModel>
+
+@{
+    ViewBag.Title = "index";
+}
+<h2>Api Pública</h2>
+
+@*<p>Resultados:</p>
+    <pre>
+        User Id: @Model.UserId
+        Id: @Model.Id
+        Title: @Model.Title
+        Completed: @Model.Completed
+    </pre>*@
+<table class="table">
+    <tr>
+        <th scope="col">UserId</th>
+        <th scope="col">Id</th>
+        <th scope="col">Title</th>
+        <th scope="col">Completed</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.UserId</td>
+            <td>@item.Id</td>
+            <td>@item.Title</td>
+            <td>@item.Completed</td>
+        </tr>
+    }
+</table>
+
+
+
