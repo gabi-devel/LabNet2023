@@ -1,6 +1,6 @@
 ﻿namespace Lab.Api.Models
 {
-    public class CategoriesModel
+    public class CategoryApiModel
     {
         public int? CategoryID { get; set; }
         public string CategoryName { get; set; }

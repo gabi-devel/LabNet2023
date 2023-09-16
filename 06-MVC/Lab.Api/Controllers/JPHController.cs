@@ -1,4 +1,4 @@
-﻿using Lab.MVC.Models;
+﻿using Lab.Api.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -6,37 +6,32 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 
-namespace Lab.MVC.Controllers
+namespace Lab.Api.Controllers
 {
-    public class MostrarController : Controller
+    public class JPHController : Controller
     {
         private readonly HttpClient httpClient;
-        public MostrarController()
+        public JPHController()
         {
             httpClient = new HttpClient();
-            // Configura aquí cualquier configuración adicional, como encabezados
         }
-
-        // GET: Mostrar
+        
         public async Task<ActionResult> Index()
-        {   
+        {
             try
             {
-                //string url = "https://jsonplaceholder.typicode.com/todos/1";
                 string url = "https://jsonplaceholder.typicode.com/todos";
                 HttpResponseMessage response = await httpClient.GetAsync(url);
                 if (response.IsSuccessStatusCode)
                 {
                     string contenido = await response.Content.ReadAsStringAsync();
-                    //MostrarModel modelo = JsonConvert.DeserializeObject<MostrarModel>(contenido);
-                    List<MostrarModel> listaModelos = JsonConvert.DeserializeObject<List<MostrarModel>>(contenido);
+                    List<JPHModel> listaModelo = JsonConvert.DeserializeObject<List<JPHModel>>(contenido);
 
-                    //return View("index", modelo);
-                    return View(listaModelos);
+                    return View(listaModelo);
                 }
                 else
                 {
-                    ViewBag.Error = "Error "+response.StatusCode;
+                    ViewBag.Error = "Error " + response.StatusCode;
                     return View("index");
                 }
             }

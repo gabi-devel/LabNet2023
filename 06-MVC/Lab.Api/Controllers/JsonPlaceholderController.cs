@@ -12,12 +12,11 @@ namespace Lab.Api.Controllers
         public JsonPlaceholderController()
         {
             httpClient = new HttpClient();
-            // Configura aquí cualquier configuración adicional, como encabezados
         }
 
         public async Task<IHttpActionResult> GetAllApi()
         {
-            string uri = "http://jsonplaceholder.typicode.com/posts/1";
+            string uri = "https://jsonplaceholder.typicode.com/todos";
 
             try
             {

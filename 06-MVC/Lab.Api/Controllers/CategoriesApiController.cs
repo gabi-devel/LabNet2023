@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace Lab.Api.Controllers
@@ -17,20 +16,8 @@ namespace Lab.Api.Controllers
             logic = new CategoriesLogic();
         }
 
-        //public IHttpActionResult GetAllEntities()
-        //{
-        //    try
-        //    {
-        //        List<CategoriesDto> catt = logic.GetAll().ToList();
-        //        return Ok(catt);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return InternalServerError(ex);
-        //    }
-        //}
-
-        
+        // GET: api/CategoriesApi
+        [HttpGet]
         public IHttpActionResult Get()
         {
             try
@@ -40,15 +27,30 @@ namespace Lab.Api.Controllers
             }
             catch (Exception ex)
             {
-                return InternalServerError(ex);
+                return BadRequest("Excepción: " + ex);
             }
         }
 
-        //public IHttpActionResult GetById(int id)
-        //{
+        // GET: api/CategoriesApi/{id}
+        [HttpGet]
+        public IHttpActionResult GetById(int id)
+        {
+            try
+            {
+                var category = logic.GetCategory(id);
+                if (category != null)
+                {
+                    return Ok(category);
+                }
+                else return BadRequest("No se encontró ese ID.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Excepción: " + ex);
+            }
+        }
 
-        //}
-
+        // POST: api/CategoriesApi
         [HttpPost]
         public IHttpActionResult CreateCategory([FromBody] CategoriesDto cat)
         {
@@ -66,34 +68,51 @@ namespace Lab.Api.Controllers
                 return BadRequest("Excepción: " + ex);
             }
         }
-        //public IHttpActionResult Put(int id, [FromBody] CategoryDto category)
-        //{
 
-        //}
-        //public IHttpActionResult Delete(int id)
-        //{
-        //    logic.Delete(employeeId);
-        //    return RedirectToAction("Index");
-        //}
-        // POST: api/categories
-        //[HttpPost]
-        //public IHttpActionResult CreateCategory(CategoriesDTO category)
-        //{
-        //    // Implementa la lógica para crear una nueva categoría
-        //}
+        // PUT: api/CategoriesApi/{id}
+        [HttpPut]
+        public IHttpActionResult UpdateCategory(int id, [FromBody] CategoriesDto cat)
+        {
+            try
+            {
+                if (!ModelState.IsValid) return BadRequest(ModelState);
 
-        //// PUT: api/categories/{id}
-        //[HttpPut]
-        //public IHttpActionResult UpdateCategory(int id, CategoriesDTO category)
-        //{
-        //    // Implementa la lógica para actualizar una categoría existente
-        //}
+                var existCategory = logic.GetCategory(id);
+                if (existCategory == null)
+                {
+                    return NotFound();
+                }
+                existCategory.CategoryName = cat.CategoryName;
+                existCategory.Description = cat.Description;
 
-        //// DELETE: api/categories/{id}
-        //[HttpDelete]
-        //public IHttpActionResult DeleteCategory(int id)
-        //{
-        //    // Implementa la lógica para eliminar una categoría por su ID
-        //}
+                logic.Update(existCategory);
+                return Ok(existCategory);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Excepción: " + ex);
+            }
+        }
+
+        // DELETE: api/CategoriesApi/{id}
+        [HttpDelete]
+        public IHttpActionResult DeleteCategory(int id)
+        {
+            try
+            {
+                var existCategory = logic.GetCategory(id);
+
+                if (existCategory != null)
+                {
+                    logic.Delete(existCategory);
+                    return StatusCode(HttpStatusCode.Accepted);
+                }
+                else return BadRequest("No se ha encontrado esa categoría para eliminar.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Excepción: " + ex);
+            }
+        }
     }
 }

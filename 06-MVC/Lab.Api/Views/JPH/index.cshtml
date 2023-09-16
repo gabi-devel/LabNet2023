@@ -1,0 +1,23 @@
+﻿@model List<Lab.Api.Models.JPHModel>
+
+@{
+    ViewBag.Title = "JSON Placeholder";
+}
+
+<h2>JSON Placeholder</h2>
+
+<table class="table">
+    <tr>
+        <th scope="col">UserId</th>
+        <th scope="col">Title</th>
+        <th scope="col">Completed</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.UserId</td>
+            <td>@item.Title</td>
+            <td>@item.Completed</td>
+        </tr>
+    }
+</table>

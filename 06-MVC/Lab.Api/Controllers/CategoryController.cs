@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Lab.Api.Models;
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -7,35 +10,29 @@ namespace Lab.Api.Controllers
 {
     public class CategoryController : Controller
     {
-        // GET: Category
-        //public ActionResult Index()
-        //{
-        //    return View();
-        //}
-        public async Task<ActionResult> GetAll()
+        private readonly HttpClient httpClient;
+
+        public CategoryController()
         {
-            using (var httpClient = new HttpClient())
+            httpClient = new HttpClient();
+        }
+
+        public async Task<ActionResult> Index()
+        {
+            try
             {
-                string url = "https://localhost:44393/api/Categories";
+                string url = "https://localhost:44393/api/CategoriesApi";
+                HttpResponseMessage response = await httpClient.GetAsync(url);
 
-                try
-                {
-                    HttpResponseMessage resp = await httpClient.GetAsync(url);
+                string contenido = await response.Content.ReadAsStringAsync();
+                List<CategoryApiModel> listaModelo = JsonConvert.DeserializeObject<List<CategoryApiModel>>(contenido);
 
-                    if (resp.IsSuccessStatusCode)
-                    {
-                        string content = await resp.Content.ReadAsStringAsync();
-
-                        return View();
-                    } else
-                    {
-                        return View("Error");
-                    }
-                }
-                catch (Exception ex)
-                {
-                    return View("Error");
-                }
+                return View(listaModelo);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Error catch " + ex.Message;
+                return View("index");
             }
         }
     }

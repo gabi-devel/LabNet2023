@@ -1,5 +1,6 @@
 ﻿using EF.Entities;
 using EF.Logic.DTOs;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -36,6 +37,24 @@ namespace EF.Logic
                 .ToListAsync();
         }
 
+        public CategoriesDto GetCategory(int id)
+        {
+            var categ = TableCategories.FirstOrDefault(c => c.CategoryID == id);
+
+            if (categ != null)
+            {
+                var categoryDto = new CategoriesDto
+                {
+                    CategoryID = categ.CategoryID,
+                    CategoryName = categ.CategoryName,
+                    Description = categ.Description
+                };
+
+                return categoryDto;
+            }
+            else return null;
+        }
+
         public void Add(CategoriesDto newCat)
         {
             context.Categories.Add(new Categories
@@ -46,6 +65,32 @@ namespace EF.Logic
             });
 
             context.SaveChanges();
+        }
+
+        public void Update(CategoriesDto cat)
+        {
+            var existCategory = TableCategories.FirstOrDefault(c => c.CategoryID == cat.CategoryID);
+
+            if (existCategory != null)
+            {
+                existCategory.CategoryName = cat.CategoryName;
+                existCategory.Description = cat.Description;
+
+                context.SaveChanges();
+            }
+            else throw new Exception("Esa categoría no fue encontrada");
+        }
+
+        public void Delete(CategoriesDto cat)
+        {
+            var existCategory = TableCategories.FirstOrDefault(c => c.CategoryID == cat.CategoryID);
+
+            if (existCategory != null)
+            {
+                TableCategories.Remove(existCategory);
+                context.SaveChanges();
+            }
+            else throw new Exception("No existe esa categoría");
         }
     }
 }
