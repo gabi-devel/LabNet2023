@@ -1,0 +1,67 @@
+﻿@model List<Lab.MVC.Models.EmployeesView>
+@{
+    ViewBag.Title = "Empleados";
+}
+
+<a href="@Url.Action("Add")" class="btn btn-primary mt-5">Agregar Empleado</a>
+
+<h2>Empleados</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th> @*Se muestra sólo por el fin de visualizar más fácilmente el borrado en este Trabajo Práctico*@
+            <th scope="col">Nombre</th>
+            <th scope="col">Apellido</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var e in Model)
+        {
+            <tr>
+                <th scope="row">@e.Id</th> 
+                <td>@e.FirstName</td>
+                <td>@e.LastName</td>
+                <td>
+                    <div class="btn-group" role="group" style="display: inline;">
+                        <button type="button" class="btn btn-warning">
+                            <a href="@Url.Action("EditEmployee", new { employeeId = e.Id })" style="text-decoration: none; color: black;">
+                                Editar
+                            </a>
+                        </button>
+
+                        @using (Html.BeginForm("DeleteEmployee", "Employees", FormMethod.Post, new { id = "formId" }))
+                        {
+                            @Html.Hidden("employeeId", e.Id)
+                            <button type="button" class="btn btn-danger" id="deleteButton" onclick="buttonDelete('@e.Id')">Borrar</button>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<script>
+    function buttonDelete(employeeId) {
+        Swal.fire({
+            title: '¿Está seguro?',
+            text: "El registro se eliminará definitivamente",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, Borrarlo',
+            cancelButtonText: 'Cancelar',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire('Borrado!', 'El registro ha sido eliminado.', 'success'
+                ).then(() => {
+                    document.getElementById("employeeId").value = employeeId;
+                    document.getElementById("formId").submit();
+                });
+            } else { }
+        })
+    }
+</script>

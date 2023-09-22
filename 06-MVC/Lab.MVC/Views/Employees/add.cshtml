@@ -1,0 +1,25 @@
+﻿@model Lab.MVC.Models.EmployeesView
+@{
+    ViewBag.Title = "Agregar Empleado";
+}
+
+<a href="@Url.Action("Index")" class="btn btn-primary mt-5">Ir atrás</a>
+
+<h2>Agregar Empleado</h2>
+<br />
+
+@using (Html.BeginForm("AddEmployee", "Employees", FormMethod.Post))
+{
+    <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        @Html.TextBoxFor(e => e.FirstName, new { @class = "form-control" })
+    </div>
+    <br />
+    <div class="mb-3">
+        <label class="form-label">Apellido</label>
+        @Html.TextBoxFor(e => e.LastName, new { @class = "form-control" })
+    </div>
+    <br />
+    <button type="submit" value="save" class="btn btn-primary">Guardar</button>
+}
+

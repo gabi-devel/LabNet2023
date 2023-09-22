@@ -1,0 +1,12 @@
+.bodyClass {
+    margin: 1rem 2rem;
+}
+
+table {
+    width: 100%;
+}
+
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}

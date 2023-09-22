@@ -1,0 +1,37 @@
+﻿
+@model List<EF.Logic.DTOs.OrdersDto>
+
+@{
+    ViewBag.Title = "Ordenes";
+}
+
+<h2>Todas las órdenes</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Cliente</th>
+            <th scope="col">Fecha de Pedido</th>
+            <th scope="col">Dirección</th>
+            <th scope="col">Ciudad</th>
+            <th scope="col">Región</th>
+            <th scope="col">País</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ord in Model)
+        {
+            <tr>
+                <td>@ord.CustomerID</td>
+                <td>@ord.OrderDate</td>
+                <td>@ord.ShipAddress</td>
+                <td>@ord.ShipCity</td>
+                <td>@ord.ShipRegion</td>
+                <td>@ord.ShipCountry</td>
+                <td>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

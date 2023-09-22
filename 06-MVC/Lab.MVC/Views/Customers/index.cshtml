@@ -1,0 +1,25 @@
+﻿
+@model List<Lab.MVC.Models.CustomerView>
+@{
+    ViewBag.Title = "CustomerView";
+}
+
+<h2>Todos los Clientes</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Código</th>
+            <th scope="col">Nombre Empresa</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+        <tr>
+            <th scope="row">@c.Id</th>
+            <td>@c.CompanyName</td>
+        </tr>
+        }
+    </tbody>
+</table>

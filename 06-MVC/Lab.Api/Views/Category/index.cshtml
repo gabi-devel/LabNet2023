@@ -1,0 +1,28 @@
+﻿@*@model List<Lab.Api.Models.CategoryApiModel>*@
+@model List<EF.Logic.DTOs.CategoriesDto>
+
+@{
+    ViewBag.Title = "Categorias";
+}
+
+<h2>Categorias</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var c in Model)
+        {
+            <tr>
+                <td>@c.CategoryID</td>
+                <td>@c.CategoryName</td>
+                <td>@c.Description</td>
+            </tr>
+        }
+    </tbody>
+</table>
